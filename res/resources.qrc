@@ -1,0 +1,7 @@
+<RCC>
+  <qresource prefix="/"/>
+  <qresource>
+    <file alias="exit.svg">images/exit.svg</file>
+    <file alias="location.svg">images/location.svg</file>
+  </qresource>
+</RCC>
