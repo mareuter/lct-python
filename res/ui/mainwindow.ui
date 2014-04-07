@@ -13,6 +13,10 @@
   <property name="windowTitle">
    <string>Lunar Club Tools</string>
   </property>
+  <property name="windowIcon">
+   <iconset resource="../resources.qrc">
+    <normaloff>:/moon.svg</normaloff>:/moon.svg</iconset>
+  </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
     <item>
