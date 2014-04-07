@@ -71,7 +71,10 @@ def main():
     This is the entrance point for the program.
     '''
     import sys
+    import qdarkstyle
+    
     app = QtGui.QApplication(sys.argv)
+    app.setStyleSheet(qdarkstyle.load_stylesheet(pyside=False))
     app.setOrganizationName("Type II Software")
     app.setApplicationName("Lunar Club Tools")
     form = LunarClubTools()
