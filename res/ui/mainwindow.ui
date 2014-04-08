@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>195</width>
-    <height>119</height>
+    <width>403</width>
+    <height>311</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -22,7 +22,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="MoonInfoTab" name="moonInfoTab">
        <attribute name="title">
@@ -34,6 +34,11 @@
         <string>Features</string>
        </attribute>
       </widget>
+      <widget class="LunarTwoTab" name="lunarTwoTab">
+       <attribute name="title">
+        <string>Lunar II</string>
+       </attribute>
+      </widget>
      </widget>
     </item>
    </layout>
@@ -43,7 +48,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>195</width>
+     <width>403</width>
      <height>26</height>
     </rect>
    </property>
@@ -123,6 +128,12 @@
    <class>FeaturesTab</class>
    <extends>QWidget</extends>
    <header>widgets</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>LunarTwoTab</class>
+   <extends>QWidget</extends>
+   <header location="global">widgets</header>
    <container>1</container>
   </customwidget>
  </customwidgets>

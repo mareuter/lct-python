@@ -34,6 +34,7 @@ class LunarClubTools(QtGui.QMainWindow, ui.Ui_MainWindow):
         '''
         self.moonInfoTab.updateUI()
         self.featuresTab.updateUI()
+        self.lunarTwoTab.updateUI()
         
     def closeEvent(self, event):
         '''
