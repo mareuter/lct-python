@@ -33,7 +33,7 @@ class LunarClubTools(QtGui.QMainWindow, ui.Ui_MainWindow):
         This function updates the main window UI and the sub-component UIs.
         '''
         self.moonInfoTab.updateUI()
-        self.featuresTab.updateUI()
+        self.lunarClubTab.updateUI()
         self.lunarTwoTab.updateUI()
         
     def closeEvent(self, event):

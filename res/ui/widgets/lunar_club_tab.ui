@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ui version="4.0">
- <class>FeaturesTabWidget</class>
- <widget class="QWidget" name="FeaturesTabWidget">
+ <class>LunarClubTabWidget</class>
+ <widget class="QWidget" name="LunarClubTabWidget">
   <property name="geometry">
    <rect>
     <x>0</x>
@@ -15,6 +15,9 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
+    <widget class="QWidget" name="lunarSpecialWidget" native="true"/>
+   </item>
+   <item>
     <layout class="QVBoxLayout" name="verticalLayout">
      <item>
       <widget class="QLabel" name="lunar_club_label">
@@ -25,32 +28,6 @@
      </item>
      <item>
       <widget class="QTreeWidget" name="lunar_club_tree">
-       <property name="minimumSize">
-        <size>
-         <width>400</width>
-         <height>400</height>
-        </size>
-       </property>
-       <column>
-        <property name="text">
-         <string notr="true">1</string>
-        </property>
-       </column>
-      </widget>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QVBoxLayout" name="verticalLayout_2">
-     <item>
-      <widget class="QLabel" name="lunar_ii_label">
-       <property name="text">
-        <string>Lunar II</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <widget class="QTreeWidget" name="lunar_ii_tree">
        <property name="minimumSize">
         <size>
          <width>400</width>
