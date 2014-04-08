@@ -19,7 +19,7 @@
      <item>
       <widget class="QLabel" name="lunar_two_label">
        <property name="text">
-        <string>Lunar II</string>
+        <string>Features</string>
        </property>
       </widget>
      </item>

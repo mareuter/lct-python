@@ -22,7 +22,7 @@
      <item>
       <widget class="QLabel" name="lunar_club_label">
        <property name="text">
-        <string>Lunar Club</string>
+        <string>Features</string>
        </property>
       </widget>
      </item>
