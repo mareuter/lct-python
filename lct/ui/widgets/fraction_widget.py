@@ -102,3 +102,4 @@ if __name__ == "__main__":
     widget.show()
     widget.resize(400, 400)
     app.exec_()
+    
