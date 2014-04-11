@@ -4,21 +4,21 @@ Created on Jun 9, 2012
 @author: Michael Reuter
 '''
 from PyQt4 import QtGui, QtCore
-from ui_features_tab import Ui_FeaturesTabWidget
+from ui_lunar_club_tab import Ui_LunarClubTabWidget
 import features
 import utils
 
-class FeaturesTab(QtGui.QWidget, Ui_FeaturesTabWidget):
+class LunarClubTab(QtGui.QWidget, Ui_LunarClubTabWidget):
     '''
     This class is responsible for listing the features visible for the Lunar 
-    Club and Lunar II clubs target lists.
+    Club target list.
     '''
 
     def __init__(self, parent=None):
         '''
         Constructor
         '''
-        super(FeaturesTab, self).__init__(parent)
+        super(LunarClubTab, self).__init__(parent)
         self.setupUi(self)
         self.features = features.LunarFeatureContainer()
         
@@ -29,7 +29,6 @@ class FeaturesTab(QtGui.QWidget, Ui_FeaturesTabWidget):
         '''
         self.features.load()
         self.populateLunarClubTree()
-        self.populateLunarIITree()
         
     def populateLunarClubTree(self):
         '''
@@ -68,29 +67,3 @@ class FeaturesTab(QtGui.QWidget, Ui_FeaturesTabWidget):
                 self.lunar_club_tree.expandItem(ancestor)
         self.lunar_club_tree.resizeColumnToContents(0)
         self.lunar_club_tree.resizeColumnToContents(1)
-        
-    def populateLunarIITree(self):
-        '''
-        This function populates the features from the Lunar II Club into the 
-        corresponding tree.
-        '''
-        self.lunar_ii_tree.clear()
-        self.lunar_ii_tree.setColumnCount(2)
-        self.lunar_ii_tree.setHeaderLabels(["Type/Name", "Latitude"])
-        self.lunar_ii_tree.setItemsExpandable(True)
-        parentFromType = {}
-        for feature in self.features.inOrder():
-            if feature.code_name in ("LunarII", "Both"):
-                ancestor = parentFromType.get(feature.feature_type)
-                if ancestor is None:
-                    ancestor = QtGui.QTreeWidgetItem(self.lunar_ii_tree,
-                                                     [feature.feature_type])
-                parentFromType[feature.feature_type] = ancestor
-                feature_lat_str = utils.StrFmt.ddString(feature.latitude, 2, 
-                                                        "latitude")
-                item = QtGui.QTreeWidgetItem(ancestor, [feature.name,
-                                                        QtCore.QString("%1").arg(feature_lat_str)])
-                item.setTextAlignment(1, QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)
-                self.lunar_ii_tree.expandItem(ancestor)
-        self.lunar_ii_tree.resizeColumnToContents(0)
-        self.lunar_ii_tree.resizeColumnToContents(1)

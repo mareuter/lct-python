@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>195</width>
-    <height>119</height>
+    <width>403</width>
+    <height>311</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -29,9 +29,14 @@
         <string>Moon Info</string>
        </attribute>
       </widget>
-      <widget class="FeaturesTab" name="featuresTab">
+      <widget class="LunarClubTab" name="lunarClubTab">
        <attribute name="title">
-        <string>Features</string>
+        <string>Lunar Club</string>
+       </attribute>
+      </widget>
+      <widget class="LunarTwoTab" name="lunarTwoTab">
+       <attribute name="title">
+        <string>Lunar II</string>
        </attribute>
       </widget>
      </widget>
@@ -43,7 +48,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>195</width>
+     <width>403</width>
      <height>26</height>
     </rect>
    </property>
@@ -120,7 +125,13 @@
    <container>1</container>
   </customwidget>
   <customwidget>
-   <class>FeaturesTab</class>
+   <class>LunarTwoTab</class>
+   <extends>QWidget</extends>
+   <header>widgets</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>LunarClubTab</class>
    <extends>QWidget</extends>
    <header>widgets</header>
    <container>1</container>
