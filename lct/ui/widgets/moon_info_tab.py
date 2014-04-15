@@ -18,12 +18,12 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         '''
         super(MoonInfoTab, self).__init__(parent)
         self.setupUi(self)
-        self._set_css_labels(self.obs_date_label, self.obs_time_label,
-                            self.location_label, self.moon_age_label,
-                            self.moon_colong_label, self.moon_illum_label,
-                            self.moon_phase_label, self.moon_libration_lat_label,
-                            self.moon_libration_long_label)
-        self._set_css_edits(self.obs_date_edit, self.obs_time_edit,
+        self._set_css_labels(self.last_obs_label, self.local_date_label, self.utc_date_label,
+                             self.location_label, self.moon_age_label,
+                             self.moon_colong_label, self.moon_illum_label,
+                             self.moon_phase_label, self.moon_libration_lat_label,
+                             self.moon_libration_long_label)
+        self._set_css_edits(self.local_date_edit, self.utc_date_edit,
                             self.location_edit, self.moon_age_edit,
                             self.moon_colong_edit, self.moon_illum_edit,
                             self.moon_phase_edit, self.moon_libration_lat_edit,
@@ -36,15 +36,20 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         '''
         obsinfo = utils.ObservingInfo()
         obsinfo.update()
-        self.obs_date_edit.setText(obsinfo.obs_site.getLocalDate())
-        self.obs_time_edit.setText(obsinfo.obs_site.getLocalTime())
-        self.location_edit.setText(obsinfo.obs_site.getLocationString())
+
+        tz_fmt = " (" + obsinfo.obs_site.getLocalTimezone() + ") "
+        self.local_date_label.setText(self.local_date_label.text() + tz_fmt)
+        self.local_date_edit.setText(obsinfo.obs_site.getLocalDate())
+        self.utc_date_edit.setText(obsinfo.obs_site.getUtcDate())
+        
         self.moon_phase_edit.setText(obsinfo.moon_info.getPhaseAsString())
         self.moon_illum_edit.setText(obsinfo.moon_info.illumination(True))
         self.moon_colong_edit.setText(obsinfo.moon_info.colong())
         self.moon_age_edit.setText(obsinfo.moon_info.age())
         self.moon_libration_lat_edit.setText(obsinfo.moon_info.libration('lat'))
         self.moon_libration_long_edit.setText(obsinfo.moon_info.libration('long'))
+        
+        self.location_edit.setText(obsinfo.obs_site.getLocationString())
         
     def _set_css_labels(self, *args):
         '''
@@ -61,4 +66,13 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         '''
         for arg in args:
             arg.setStyleSheet(utils.CSS_MOON_INFO_EDITS)
-        
+            
+if __name__ == "__main__":
+    import sys
+    app = QtGui.QApplication(sys.argv)
+    widget = MoonInfoTab()
+    widget.move(0, 0)
+    widget.show()
+    widget.updateUI()
+    #widget.resize(400, 400)
+    app.exec_()
