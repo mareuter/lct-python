@@ -91,8 +91,10 @@ class ObservingSite(object):
         as they are decimal. Also, add extra 3-tuple to fulfill function requirements.
         @return: The UTC date/time.
         '''
+        seconds = int(round(self._observer.date.tuple()[-1], 0))
         return time.strftime("%Y/%m/%d %H:%M:%S", 
-                             tuple(int(x) for x in self._observer.date.tuple()) + (0, 0, 0))
+                             tuple(int(x) for x in self._observer.date.tuple()[:-1]) + 
+                             (seconds, 0, 0, 0))
     
     def getDateTime(self):
         '''
