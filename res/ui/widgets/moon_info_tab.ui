@@ -87,7 +87,7 @@
      <item>
       <widget class="QLabel" name="utc_date_label">
        <property name="text">
-        <string>Date (UTC)</string>
+        <string>Date (UTC):</string>
        </property>
       </widget>
      </item>

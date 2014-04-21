@@ -37,7 +37,7 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         obsinfo = utils.ObservingInfo()
         obsinfo.update()
 
-        tz_fmt = " (" + obsinfo.obs_site.getLocalTimezone() + ")"
+        tz_fmt = " (" + obsinfo.obs_site.getLocalTimezone() + "):"
         self.local_date_label.setText(self.local_date_label.text() + tz_fmt)
         self.local_date_edit.setText(obsinfo.obs_site.getLocalDate())
         self.utc_date_edit.setText(obsinfo.obs_site.getUtcDate())
