@@ -44,7 +44,7 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         
         self.moon_phase_edit.setText(obsinfo.moon_info.getPhaseAsString())
         self.moon_illum_edit.setText(obsinfo.moon_info.illumination(True))
-        self.moon_colong_edit.setText(obsinfo.moon_info.colong())
+        self.moon_colong_edit.setText(utils.StrFmt.dmsString(obsinfo.moon_info.colong().split(':')))
         self.moon_age_edit.setText(obsinfo.moon_info.age())
         self.moon_libration_lat_edit.setText(obsinfo.moon_info.libration('lat'))
         self.moon_libration_long_edit.setText(obsinfo.moon_info.libration('long'))
