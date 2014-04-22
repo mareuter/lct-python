@@ -24,7 +24,7 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
                              self.moon_phase_label, self.moon_libration_lat_label,
                              self.moon_libration_long_label)
         self._set_css_edits(self.local_date_edit, self.utc_date_edit,
-                            self.location_edit, self.moon_age_edit,
+                            self.location_edit, self.moon_age_edit, self.moon_age_units_label,
                             self.moon_colong_edit, self.moon_illum_edit,
                             self.moon_phase_edit, self.moon_libration_lat_edit,
                             self.moon_libration_long_edit)
