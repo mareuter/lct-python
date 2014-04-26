@@ -130,7 +130,8 @@ class MoonInfo(object):
         libration = getattr(self._moon, 'libration_%s' % coord_type)
         dms = utils.Converter.ddToDms(math.degrees(libration))
         # Only take degrees and minutes.
-        return utils.StrFmt.dmsString(dms[:2])
+        dm = (dms[0], dms[1], dms[-1])
+        return utils.StrFmt.dmsString(dm)
     
     def _getPhase(self):
         '''
