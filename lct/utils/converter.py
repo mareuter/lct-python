@@ -19,27 +19,31 @@ class Converter(object):
     @classmethod
     def dmsToDd(cls, dms):
         '''
-        This function takes (degrees, minutes, seconds) and turns them into 
+        This function takes (degrees, minutes, seconds, sign) and turns them into 
         a decimal degree value.
-        @param dms: A tuple of three values.
+        @param dms: A tuple of four values.
         @return: The decimal degrees of the input.
         '''
-        decdeg = dms[0] + 60.0 / dms[1] + 3600.0 / dms[2]
-        return decdeg
+        decdeg = dms[0] + (dms[1] / 60.0) + (dms[2] / 3600.0)
+        return dms[3] * decdeg
     
     @classmethod
     def ddToDms(cls, decdeg, floatsec=False):
         '''
         This function takes the decimal degrees and returns the equivalent 
-        (degrees, minutes, seconds).
+        (degrees, minutes, seconds, sign) where sign : [-1, 1].
         @param decdeg: The decimal degrees input.
         @param floatsec: Return seconds as a decimal
-        @return: A tuple of three values.
+        @return: A tuple of four values.
         '''
+        # Determine sign
+        dms_sign = 1
+        if decdeg < 0:
+            dms_sign = -1
+        # Take out sign as this is now carried above
+        decdeg = math.fabs(decdeg)
         degrees = int(decdeg)
         decdeg -= degrees
-        # Ensure that minutes and seconds don't get a negative transferred.
-        decdeg = math.fabs(decdeg)
         decdeg *= 60.0
         minutes = int(decdeg)
         decdeg -= minutes
@@ -48,4 +52,4 @@ class Converter(object):
             seconds = decdeg
         else:
             seconds = int(decdeg)
-        return (degrees, minutes, seconds)
+        return (degrees, minutes, seconds, dms_sign)

@@ -63,12 +63,15 @@ class StrFmt(object):
     def dmsString(cls, dms):
         '''
         This function takes a DMS tuple (can be DM as well), and returns a 
-        string with angle marks for each component.
-        @param dms: A 2 or 3 tuple containing DM or DMS information.
+        string with angle marks for each component. The tuple must contain a last 
+        element which is the sign of the value in the set [-1, 1].
+        @param dms: A 3 or 4 tuple containing DM or DMS information.
         @return: An angle string with angle marks for each component.
         '''
         astr = ''
-        for i, val in enumerate(dms):
+        for i, val in enumerate(dms[:-1]):
             astr += str(val) + utils.ANGLE_MARKERS[i] + ' '
+        if dms[-1] == -1:
+            astr = "-"+astr
         return astr.strip()
         
