@@ -35,7 +35,8 @@ class ObservingSite(object):
         result = []
         result.append("Latitude: %s" % self.toCoordString("lat"))
         result.append("Longitude: %s" % self.toCoordString("long"))
-        result.append("DateTime: %s" % self.getDateTime())
+        result.append("DateTime: %s %s" % (self.getDateTime(), self.getLocalTimezone()))
+        result.append("UTC: %s" % self.getUtcDate())
         return os.linesep.join(result)
     
     def _tupleToString(self, coordinate):
@@ -84,27 +85,39 @@ class ObservingSite(object):
         '''
         return getattr(self, "_"+coord_type+"itude")
     
+    def getUtcDate(self):
+        '''
+        This function returns the UTC date/time as a string. Need to integerize the seconds 
+        as they are decimal. Also, add extra 3-tuple to fulfill function requirements.
+        @return: The UTC date/time.
+        '''
+        seconds = int(round(self._observer.date.tuple()[-1], 0))
+        return time.strftime("%Y/%m/%d %H:%M:%S", 
+                             tuple(int(x) for x in self._observer.date.tuple()[:-1]) + 
+                             (seconds, 0, 0, 0))
+    
     def getDateTime(self):
         '''
-        This function returns an ISO8600 date/time string.
+        This function returns a near ISO8600 date/time string without timezone.
         @return: The local date/time.
         '''
         local_time = ephem.localtime(self._observer.date)
-        return str(local_time.strftime("%Y-%m-%dT%H:%M:%S%z"))
+        return str(local_time.strftime("%Y-%m-%dT%H:%M:%S"))
     
     def getLocalDate(self):
         '''
-        This function returns the local date as a string.
-        @return: The local date.
+        This function returns the local date/time without timezone as a string.
+        @return: The local date/time.
         '''
-        return self.getDateTime().split('T')[0]
+        return self.getDateTime().replace('-', '/').replace('T', ' ')
     
-    def getLocalTime(self):
+    def getLocalTimezone(self):
         '''
-        This function returns the local time as a string.
-        @return: The local time.
+        This function returns the local timezone as a string.
+        @return: The local timezone.
         '''
-        return self.getDateTime().split('T')[-1]
+        tz_name = time.tzname[time.daylight]
+        return "".join([x[0] for x in tz_name.split()])
     
     def getObserver(self):
         '''
