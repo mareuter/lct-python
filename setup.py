@@ -109,7 +109,7 @@ if __name__ == "__main__":
                       'build_qt': build_qt},
           data_files = [ ('lct/ui', glob.glob('res/ui/*.ui')),
                         ('lct/ui/widgets', glob.glob('res/ui/widgets/*.ui')),
-                        ('lct/db', '%s/db' % PACKAGE),
+                        ('lct/db', glob.glob('lct/db/*.db')),
                         ('lct/images', glob.glob('res/images/*.svg')) ],
           package_dir = {'lct': 'lct',
                          'lct.ui': 'lct/ui',
