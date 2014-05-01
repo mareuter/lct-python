@@ -13,7 +13,7 @@ import stat
 PACKAGE = 'lct'
 MAJOR = 0
 MINOR = 3
-PATCH = 0
+PATCH = 1
 VERSION = "%d.%d.%d" % (MAJOR, MINOR, PATCH)
 
 # Pete Shinner's distutils data file fix... from distutils-sig
