@@ -12,9 +12,12 @@ import stat
 
 PACKAGE = 'lct'
 MAJOR = 0
-MINOR = 3
-PATCH = 1
-VERSION = "%d.%d.%d" % (MAJOR, MINOR, PATCH)
+MINOR = 4
+PATCH = "dev"
+try:
+    VERSION = "%d.%d.%d" % (MAJOR, MINOR, PATCH)
+except TypeError:
+    VERSION = "%d.%d.%s" % (MAJOR, MINOR, PATCH)
 
 # Pete Shinner's distutils data file fix... from distutils-sig
 #  data installer with improved intelligence over distutils
