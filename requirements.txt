@@ -1,3 +1,2 @@
-PyQt4
 pyephem
 qdarkstyle
