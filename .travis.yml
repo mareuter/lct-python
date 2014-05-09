@@ -4,7 +4,7 @@ virtualenv:
   system_site_packages: true
 # command to install dependencies
 install: 
-  - sudo apt-get install python-qt4 python-qt4-dev
+  - sudo apt-get install python-qt4 python-qt4-dev pyqt4-dev-tools
   - pip install -r requirements.txt
   - python setup.py install
 # command to run tests
