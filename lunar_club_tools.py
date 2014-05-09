@@ -5,5 +5,5 @@ Created on Jun 1, 2012
 '''
 
 if __name__ == '__main__':
-    import lct
-    lct.main()
+    import lct.main_window as lm
+    lm.main()

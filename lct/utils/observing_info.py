@@ -3,10 +3,8 @@ Created on Jun 7, 2012
 
 @author: Michael Reuter
 '''
-
-import utils
-from moon_info import MoonInfo
-from observing_site import ObservingSite
+from .moon_info import MoonInfo
+from .observing_site import ObservingSite
 
 class ObservingInfo(object):
     '''

@@ -5,8 +5,9 @@ Created on Jun 11, 2012
 '''
 import sqlite3
 from PyQt4 import QtCore
-from lunar_feature import LunarFeature
-import utils
+
+from .lunar_feature import LunarFeature
+from lct.utils.observing_info import ObservingInfo
 
 ID, NAME, DIAMETER, LATITUDE, LONGITUDE, D_LAT, D_LONG, TYPE, QUAD_NAME, \
 QUAD_CODE, LUNAR_CODE, LUNAR_CLUB_TYPE = range(12)
@@ -70,7 +71,7 @@ class LunarFeatureContainer(object):
         '''
         # Ensure the feature dictionary is empty
         self.features = {}
-        obs_info = utils.ObservingInfo()
+        obs_info = ObservingInfo()
         c = self.conn.cursor()
         c.execute('select * from Features')
         for row in c:

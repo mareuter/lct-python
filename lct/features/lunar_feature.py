@@ -3,8 +3,9 @@ Created on Jun 11, 2012
 
 @author: Michael Reuter
 '''
-from PyQt4 import QtCore
 import os
+
+from PyQt4 import QtCore
 
 class LunarFeature(object):
     '''

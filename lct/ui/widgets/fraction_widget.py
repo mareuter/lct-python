@@ -3,7 +3,8 @@ Created on Apr 4, 2014
 
 @author: Michael Reuter
 '''
-from PyQt4 import QtGui, QtCore
+from PyQt4 import QtGui
+from PyQt4 import QtCore
 
 class FractionWidget(QtGui.QWidget):
     '''

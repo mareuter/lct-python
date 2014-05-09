@@ -3,9 +3,12 @@ Created on Jun 13, 2012
 
 @author: Michael Reuter
 '''
-import ephem
 import math
-import utils
+
+import ephem
+
+from .converter import Converter
+from .string_format import StrFmt
 
 class MoonInfo(object):
     '''
@@ -44,7 +47,7 @@ class MoonInfo(object):
         '''
         prev_new = ephem.previous_new_moon(self._observer.date)
         age = self._observer.date - prev_new
-        return utils.StrFmt.floatString(age, 2)
+        return StrFmt.floatString(age, 2)
         
     def colong(self):
         '''
@@ -63,8 +66,7 @@ class MoonInfo(object):
             pf = '%'
         else:
             pf = None
-        return utils.StrFmt.floatString(self._moon.moon_phase * 100.0, 
-                                        1, postfix=pf)
+        return StrFmt.floatString(self._moon.moon_phase * 100.0, 1, postfix=pf)
     
     def isVisible(self, lfeature):
         '''
@@ -128,10 +130,10 @@ class MoonInfo(object):
         @return: The libration coordinate as a string.
         '''
         libration = getattr(self._moon, 'libration_%s' % coord_type)
-        dms = utils.Converter.ddToDms(math.degrees(libration))
+        dms = Converter.ddToDms(math.degrees(libration))
         # Only take degrees and minutes.
         dm = (dms[0], dms[1], dms[-1])
-        return utils.StrFmt.dmsString(dm)
+        return StrFmt.dmsString(dm)
     
     def _getPhase(self):
         '''
