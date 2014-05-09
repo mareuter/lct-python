@@ -20,6 +20,9 @@ def suite():
         exec('from %s import suite as test_suite' % name)
         all_tests.addTest(test_suite())
     return all_tests
-   
-if __name__ == "__main__":
+
+def main():
     unittest.TextTestRunner().run(suite())
+    
+if __name__ == "__main__":
+    main()
