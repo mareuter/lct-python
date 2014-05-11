@@ -3,9 +3,11 @@ Created on Jun 22, 2012
 
 @author: Michael Reuter
 '''
-from PyQt4 import QtCore, QtGui
-from ui_location_config import Ui_LocationConfigDialog
-import utils
+from PyQt4 import QtCore
+from PyQt4 import QtGui
+
+from .ui_location_config import Ui_LocationConfigDialog
+from lct.utils.observing_info import ObservingInfo
 
 class LocationConfig(QtGui.QDialog, Ui_LocationConfigDialog):
     '''
@@ -74,7 +76,7 @@ class LocationConfig(QtGui.QDialog, Ui_LocationConfigDialog):
         This function gathers the information recorded in the dialog and 
         transfers it to the observation site object.
         '''
-        obs_info = utils.ObservingInfo()
+        obs_info = ObservingInfo()
         lat_deg = self.lat_deg_edit.text().toInt()[0]
         lat_min = self.lat_min_edit.text().toInt()[0]
         lat_sec = self.lat_sec_edit.text().toInt()[0]

@@ -2,9 +2,10 @@
 Created on Jun 1, 2012
 @author: Michael Reuter
 '''
-import ephem
 import os
 import time
+
+import ephem
 
 class ObservingSite(object):
     '''

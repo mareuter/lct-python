@@ -2,11 +2,14 @@
 Created on Jun 1, 2012
 @author: Michael Reuter
 '''
-from PyQt4 import QtCore, QtGui
-import ui.widgets
-import version
+from PyQt4 import QtCore
+from PyQt4 import QtGui
 
-class LunarClubTools(QtGui.QMainWindow, ui.Ui_MainWindow):
+import lct.ui.ui_mainwindow as um
+import lct.ui.widgets as uw
+from . import version
+
+class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
     '''
     This is the main class for the program.
     '''
@@ -48,7 +51,7 @@ class LunarClubTools(QtGui.QMainWindow, ui.Ui_MainWindow):
         '''
         This function sets up and opens the location configuration dialog.
         '''
-        dialog = ui.widgets.LocationConfig()
+        dialog = uw.location_config.LocationConfig()
         self.connect(dialog, QtCore.SIGNAL("updateLocation"), self.updateUI)
         if dialog.exec_():
             dialog.setLocation()

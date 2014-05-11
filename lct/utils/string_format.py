@@ -4,7 +4,8 @@ Created on Jun 9, 2012
 @author: Michael Reuter
 '''
 import math
-import utils
+
+import lct.utils.constants as constants
 
 class StrFmt(object):
     '''
@@ -43,13 +44,13 @@ class StrFmt(object):
         @return: The formatting decimal degree string.
         '''
         dir_tag = ''
-        if coord_type == utils.LATITUDE:
+        if coord_type == constants.LATITUDE:
             if decdeg < 0:
                 decdeg = math.fabs(decdeg)
                 dir_tag = "S"
             else:
                 dir_tag = "N"
-        if coord_type == utils.LONGITUDE:
+        if coord_type == constants.LONGITUDE:
             if decdeg < 0:
                 decdeg = math.fabs(decdeg)
                 dir_tag = "W"
@@ -70,7 +71,7 @@ class StrFmt(object):
         '''
         astr = ''
         for i, val in enumerate(dms[:-1]):
-            astr += str(val) + utils.ANGLE_MARKERS[i] + ' '
+            astr += str(val) + constants.ANGLE_MARKERS[i] + ' '
         if dms[-1] == -1:
             astr = "-"+astr
         return astr.strip()

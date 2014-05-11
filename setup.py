@@ -75,14 +75,14 @@ class build_qt(Command):
             uifile = os.path.join(idir, uifile)
             pyuifile = os.path.join(odir, pyuifile)
             if isNewer(uifile, pyuifile): 
-                pyuic_cmd = "pyuic4 -o %s %s" % (pyuifile, uifile)
+                pyuic_cmd = "pyuic4 --from-imports -o %s %s" % (pyuifile, uifile)
                 print pyuic_cmd
                 exec_cmd(pyuic_cmd)
 
     def run(self):
         # Make resources
         qtr = "res/resources.qrc"
-        pyqtr = "%s/resources_rc.py" % PACKAGE
+        pyqtr = "%s/ui/resources_rc.py" % PACKAGE
         if isNewer(qtr, pyqtr):
             pyrcc_cmd = "pyrcc4 -o %s %s" % (pyqtr, qtr)
             print pyrcc_cmd

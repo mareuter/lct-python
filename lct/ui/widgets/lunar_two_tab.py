@@ -3,10 +3,12 @@ Created on Apr 7, 2014
 
 @author: Michael Reuter
 '''
-from PyQt4 import QtGui, QtCore
-from ui_lunar_two_tab import Ui_LunarTwoTabWidget
-import features
-import utils
+from PyQt4 import QtGui
+from PyQt4 import QtCore
+
+from .ui_lunar_two_tab import Ui_LunarTwoTabWidget
+import lct.features.lunar_feature_container as lfc
+from lct.utils.string_format import StrFmt
 
 class LunarTwoTab(QtGui.QWidget, Ui_LunarTwoTabWidget):
     '''
@@ -20,7 +22,7 @@ class LunarTwoTab(QtGui.QWidget, Ui_LunarTwoTabWidget):
         '''
         super(LunarTwoTab, self).__init__(parent)
         self.setupUi(self)
-        self.features = features.LunarFeatureContainer()
+        self.features = lfc.LunarFeatureContainer()
         
     def updateUI(self):
         '''
@@ -47,8 +49,7 @@ class LunarTwoTab(QtGui.QWidget, Ui_LunarTwoTabWidget):
                     ancestor = QtGui.QTreeWidgetItem(self.lunar_two_tree,
                                                      [feature.feature_type])
                 parentFromType[feature.feature_type] = ancestor
-                feature_lat_str = utils.StrFmt.ddString(feature.latitude, 2, 
-                                                        "latitude")
+                feature_lat_str = StrFmt.ddString(feature.latitude, 2, "latitude")
                 item = QtGui.QTreeWidgetItem(ancestor, [feature.name,
                                                         QtCore.QString("%1").arg(feature_lat_str)])
                 item.setTextAlignment(1, QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)

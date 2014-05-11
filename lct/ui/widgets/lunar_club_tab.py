@@ -3,10 +3,13 @@ Created on Jun 9, 2012
 
 @author: Michael Reuter
 '''
-from PyQt4 import QtGui, QtCore
-from ui_lunar_club_tab import Ui_LunarClubTabWidget
-import features
-import utils
+from PyQt4 import QtGui 
+from PyQt4 import QtCore
+
+from .ui_lunar_club_tab import Ui_LunarClubTabWidget
+import lct.features.lunar_feature_container as lfc
+from lct.utils.string_format import StrFmt
+import lct.utils.constants as constants
 
 class LunarClubTab(QtGui.QWidget, Ui_LunarClubTabWidget):
     '''
@@ -20,7 +23,7 @@ class LunarClubTab(QtGui.QWidget, Ui_LunarClubTabWidget):
         '''
         super(LunarClubTab, self).__init__(parent)
         self.setupUi(self)
-        self.features = features.LunarFeatureContainer()
+        self.features = lfc.LunarFeatureContainer()
         
     def updateUI(self):
         '''
@@ -41,7 +44,7 @@ class LunarClubTab(QtGui.QWidget, Ui_LunarClubTabWidget):
         self.lunar_club_tree.setItemsExpandable(True)
         parentFromTarget = {}
         # Set Target values first since they need to be in a specific order.
-        for club_type in utils.LUNAR_CLUB_TARGET_TYPES:
+        for club_type in constants.LUNAR_CLUB_TARGET_TYPES:
             # Need to be QStrings to match object in LunarFeature
             qstr_club_type = QtCore.QString(club_type)
             ancestor = QtGui.QTreeWidgetItem(self.lunar_club_tree, 
@@ -58,8 +61,7 @@ class LunarClubTab(QtGui.QWidget, Ui_LunarClubTabWidget):
                     parent = QtGui.QTreeWidgetItem(ancestor, 
                                                        [feature.feature_type])
                     parentFromType[targettype] = parent
-                feature_lat_str = utils.StrFmt.ddString(feature.latitude, 2, 
-                                                        "latitude")
+                feature_lat_str = StrFmt.ddString(feature.latitude, 2, "latitude")
                 item = QtGui.QTreeWidgetItem(parent, [feature.name,
                                                       QtCore.QString("%1").arg(feature_lat_str)])
                 item.setTextAlignment(1, QtCore.Qt.AlignRight | QtCore.Qt.AlignVCenter)

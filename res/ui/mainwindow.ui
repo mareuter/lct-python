@@ -22,7 +22,7 @@
     <item>
      <widget class="QTabWidget" name="tabWidget">
       <property name="currentIndex">
-       <number>1</number>
+       <number>2</number>
       </property>
       <widget class="MoonInfoTab" name="moonInfoTab">
        <attribute name="title">
@@ -121,19 +121,19 @@
   <customwidget>
    <class>MoonInfoTab</class>
    <extends>QWidget</extends>
-   <header>widgets</header>
-   <container>1</container>
-  </customwidget>
-  <customwidget>
-   <class>LunarTwoTab</class>
-   <extends>QWidget</extends>
-   <header>widgets</header>
+   <header>lct.ui.widgets.moon_info_tab</header>
    <container>1</container>
   </customwidget>
   <customwidget>
    <class>LunarClubTab</class>
    <extends>QWidget</extends>
-   <header>widgets</header>
+   <header>lct.ui.widgets.lunar_club_tab</header>
+   <container>1</container>
+  </customwidget>
+  <customwidget>
+   <class>LunarTwoTab</class>
+   <extends>QWidget</extends>
+   <header>lct.ui.widgets.lunar_two_tab</header>
    <container>1</container>
   </customwidget>
  </customwidgets>
