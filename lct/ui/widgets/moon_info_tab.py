@@ -101,7 +101,7 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         icon = ":/%s_moon.png"
         for arg, phase in itertools.izip(args, phases):
             arg[0].setPixmap(QtGui.QPixmap(icon % phase[0]))
-            arg[1].setText(str(phase[1]))
+            arg[1].setText(StrFmt.dateStringNoSeconds(phase[1], True))
             
 if __name__ == "__main__":
     import sys
