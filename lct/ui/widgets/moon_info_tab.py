@@ -9,6 +9,7 @@ from .ui_moon_info_tab import Ui_MoonInfoTabWidget
 from lct.utils.observing_info import ObservingInfo
 from lct.utils.string_format import StrFmt
 import lct.utils.constants as constants
+from .. import resources_rc
 
 class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
     '''
@@ -30,7 +31,12 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
                             self.location_edit, self.moon_age_edit, self.moon_age_units_label,
                             self.moon_colong_edit, self.moon_illum_edit,
                             self.moon_phase_edit, self.moon_libration_lat_edit,
-                            self.moon_libration_long_edit)
+                            self.moon_libration_long_edit, self.first_phase_edit,
+                            self.second_phase_edit, self.third_phase_edit, self.fourth_phase_edit)
+        self._clear_moon_phase_widgets(self.first_phase_icon, self.first_phase_edit,
+                                       self.second_phase_icon, self.second_phase_edit,
+                                       self.third_phase_icon, self.third_phase_edit,
+                                       self.fourth_phase_icon, self.fourth_phase_edit)
         
     def updateUI(self):
         '''
@@ -52,6 +58,12 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         self.moon_libration_lat_edit.setText(obsinfo.moon_info.libration('lat'))
         self.moon_libration_long_edit.setText(obsinfo.moon_info.libration('long'))
         
+        self._set_moon_phase_widgets(obsinfo,
+                                     (self.first_phase_icon, self.first_phase_edit),
+                                     (self.second_phase_icon, self.second_phase_edit),
+                                     (self.third_phase_icon, self.third_phase_edit),
+                                     (self.fourth_phase_icon, self.fourth_phase_edit))
+        
         self.location_edit.setText(obsinfo.obs_site.getLocationString())
         
     def _set_css_labels(self, *args):
@@ -69,6 +81,27 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         '''
         for arg in args:
             arg.setStyleSheet(constants.CSS_MOON_INFO_EDITS)
+            
+    def _clear_moon_phase_widgets(self, *args):
+        '''
+        This function clears the label text in the moon phase indicator widgets.
+        @param args: The set ot QLabels to be cleared.
+        '''
+        for arg in args:
+            arg.setText('')
+            
+    def _set_moon_phase_widgets(self, obin, *args):
+        '''
+        This function sets the icon and date string for the list of phases.
+        @param obin: The object containing the observation information.
+        @param args: The list of two-tuples of widgets
+        '''
+        import itertools
+        phases = obin.moon_info.findNextFourPhases()
+        icon = ":/%s_moon.png"
+        for arg, phase in itertools.izip(args, phases):
+            arg[0].setPixmap(QtGui.QPixmap(icon % phase[0]))
+            arg[1].setText(str(phase[1]))
             
 if __name__ == "__main__":
     import sys
