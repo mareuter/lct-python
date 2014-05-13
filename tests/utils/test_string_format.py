@@ -43,6 +43,14 @@ class StringFormatTest(unittest.TestCase):
         # Negative DM tuple
         self.assertEqual(StrFmt.dmsString((15, 30, -1)), 
                          "-15"+constants.DEGREE_MARKER+" 30"+constants.ANGLE_MARKERS[1])
+        
+    def test_dateStringNoSeconds(self):
+        import ephem
+        edate = ephem.Date('2013/10/18 18:00:45')
+        # Return UTC
+        self.assertEqual(StrFmt.dateStringNoSeconds(edate), "2013/10/18 18:00")
+        # Return local
+        self.assertEqual(StrFmt.dateStringNoSeconds(edate, True), "2013/10/18 14:00")
 
 def suite():
     """

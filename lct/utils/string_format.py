@@ -75,4 +75,24 @@ class StrFmt(object):
         if dms[-1] == -1:
             astr = "-"+astr
         return astr.strip()
+    
+    @classmethod
+    def dateStringNoSeconds(cls, edate, get_local=False):
+        '''
+        This function converts an ephem.Date object into a date/time string. If one wants local 
+        time, the flag get_local may be set to True.
+        @param edate: The ephem.Date object.
+        @param get_local: Get (or not) the local time from edate.
+        @return: The date/time string with no seconds.
+        '''
+        import ephem
+        
+        
+        if get_local:
+            idate = ephem.localtime(edate)
+        else:
+            idate = edate.datetime()
+        # idate is datetime.datetime
+        
+        return str(idate.strftime("%Y/%m/%d %H:%M"))
         
