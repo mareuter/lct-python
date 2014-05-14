@@ -308,6 +308,9 @@
    </item>
    <item row="9" column="0">
     <widget class="QFrame" name="frame">
+     <property name="styleSheet">
+      <string notr="true">QFrame { background-color: #ffffff; }</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::HLine</enum>
      </property>
@@ -480,6 +483,9 @@
    </item>
    <item row="13" column="0">
     <widget class="QFrame" name="frame_2">
+     <property name="styleSheet">
+      <string notr="true">QFrame { background-color: #ffffff; }</string>
+     </property>
      <property name="frameShape">
       <enum>QFrame::HLine</enum>
      </property>
