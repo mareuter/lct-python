@@ -87,12 +87,16 @@ class StrFmt(object):
         '''
         import ephem
         
-        
+        tz_str = ""
+        # idate is datetime.datetime
         if get_local:
             idate = ephem.localtime(edate)
+            import tzlocal
+            tz = tzlocal.get_localzone()
+            tz_str = " " + tz.tzname(idate)
         else:
             idate = edate.datetime()
-        # idate is datetime.datetime
         
-        return str(idate.strftime("%Y/%m/%d %H:%M"))
+        t_str = str(idate.strftime("%Y/%m/%d %H:%M"))
+        return t_str + tz_str
         

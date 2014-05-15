@@ -47,12 +47,17 @@ class StringFormatTest(unittest.TestCase):
     def test_dateStringNoSeconds(self):
         import ephem
         edate = ephem.Date('2013/10/18 18:00:45')
+        # Date/time without seconds
+        fmt ="%Y/%m/%d %H:%M"
         # Return UTC
-        self.assertEqual(StrFmt.dateStringNoSeconds(edate), "2013/10/18 18:00")
+        t_str = str(edate.datetime().strftime(fmt))
+        self.assertEqual(StrFmt.dateStringNoSeconds(edate), t_str)
         # Return local
-        # Disable test 2014/05/13 
-        # This needs work since build servers are in Europe.
-        #self.assertEqual(StrFmt.dateStringNoSeconds(edate, True), "2013/10/18 14:00")
+        import tzlocal
+        tz = tzlocal.get_localzone()
+        tz_str = " " + tz.tzname(ephem.localtime(edate))
+        t_str = str(ephem.localtime(edate).strftime(fmt)) + tz_str
+        self.assertEqual(StrFmt.dateStringNoSeconds(edate, True), t_str)
 
 def suite():
     """
