@@ -196,3 +196,18 @@ class MoonInfo(object):
             return 180.0 - colong
         if cur_phase in (MoonInfo.TQ, MoonInfo.WANING_CRESENT):
             return -1.0 * (colong - 180.0)
+        
+    def findNextFourPhases(self):
+        '''
+        This function returns a sorted tuple of the next four phases with the key being the short 
+        name for the phase. The value is a modified Julian date for the phase.
+        @return: A list of tuples sorted by the value date.
+        '''
+        phases = {}
+        phases["new"] = ephem.next_new_moon(self._observer.date)
+        phases["fq"] = ephem.next_first_quarter_moon(self._observer.date)
+        phases["full"] = ephem.next_full_moon(self._observer.date)
+        phases["tq"] = ephem.next_last_quarter_moon(self._observer.date)
+        
+        return sorted(phases.items(), key=lambda x:x[1])
+        

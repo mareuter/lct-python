@@ -13,6 +13,7 @@ def suite():
     """
     test_modules = [
                     'tests.utils.test_converter',
+                    'tests.utils.test_moon_info',
                     'tests.utils.test_string_format'
                     ]
     all_tests = unittest.TestSuite()
