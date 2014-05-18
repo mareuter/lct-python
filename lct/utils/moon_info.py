@@ -219,3 +219,11 @@ class MoonInfo(object):
         '''
         prev_new_moon = ephem.previous_new_moon(self._observer.date)
         return MoonInfo.DAYS_TO_HOURS * (self._observer.date - prev_new_moon)
+    
+    def timeToNewMoon(self):
+        '''
+        This function calculates the time to the next new moon.
+        @returns: The time to new moon in decimal hours
+        '''
+        next_new_moon = ephem.next_new_moon(self._observer.date)
+        return MoonInfo.DAYS_TO_HOURS * (next_new_moon - self._observer.date)
