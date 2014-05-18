@@ -30,6 +30,7 @@ class LunarClubTab(QtGui.QWidget, Ui_LunarClubTabWidget):
         This function is for handling things that need to be updated on the 
         UI.
         '''
+        self.lunarClubSpecialWidget.updateUI()
         self.features.load()
         self.populateLunarClubTree()
         

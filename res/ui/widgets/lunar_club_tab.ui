@@ -15,7 +15,7 @@
   </property>
   <layout class="QHBoxLayout" name="horizontalLayout">
    <item>
-    <widget class="QWidget" name="lunarSpecialWidget" native="true"/>
+    <widget class="LunarClubSpecialWidget" name="lunarClubSpecialWidget" native="true"/>
    </item>
    <item>
     <layout class="QVBoxLayout" name="verticalLayout">
@@ -45,6 +45,14 @@
    </item>
   </layout>
  </widget>
+ <customwidgets>
+  <customwidget>
+   <class>LunarClubSpecialWidget</class>
+   <extends>QWidget</extends>
+   <header>lct.ui.widgets.lunar_club_special_widget</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
  <resources/>
  <connections/>
 </ui>
