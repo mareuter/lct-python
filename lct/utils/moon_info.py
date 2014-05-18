@@ -223,7 +223,15 @@ class MoonInfo(object):
     def timeToNewMoon(self):
         '''
         This function calculates the time to the next new moon.
-        @returns: The time to new moon in decimal hours
+        @returns: The time to new moon in decimal hours.
         '''
         next_new_moon = ephem.next_new_moon(self._observer.date)
         return MoonInfo.DAYS_TO_HOURS * (next_new_moon - self._observer.date)
+    
+    def timeToFullMoon(self):
+        '''
+        This function calculates the time to the next full moon.
+        @returns: The time to full moon in decimal days.
+        '''
+        next_full_moon = ephem.next_full_moon(self._observer.date)
+        return next_full_moon - self._observer.date
