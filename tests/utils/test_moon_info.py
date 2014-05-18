@@ -30,6 +30,10 @@ class MoonInfoTestCase(unittest.TestCase):
                        ("fq", 41586.74803717344)]
         
         self.assertEquals(next_phases, real_phases)
+        
+    def test_time_from_new_moon(self):
+        truth_time_from_new_moon = 333.4247006776859 #hours
+        self.assertEquals(self.moon.timeFromNewMoon(), truth_time_from_new_moon)
 
 def suite():
     """

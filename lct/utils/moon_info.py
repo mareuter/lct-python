@@ -24,6 +24,7 @@ class MoonInfo(object):
     MORNING, EVENING = range(2)
     FEATURE_CUTOFF = 15.0 # degrees
     NO_CUTOFF_TYPE = ("Mare", "Oceanus")
+    DAYS_TO_HOURS = 24.0
 
     def __init__(self):
         '''
@@ -211,3 +212,10 @@ class MoonInfo(object):
         
         return sorted(phases.items(), key=lambda x:x[1])
         
+    def timeFromNewMoon(self):
+        '''
+        This function calculates the time from the previous new moon.
+        @returns: The time from new moon in decimal hours.
+        '''
+        prev_new_moon = ephem.previous_new_moon(self._observer.date)
+        return MoonInfo.DAYS_TO_HOURS * (self._observer.date - prev_new_moon)
