@@ -60,7 +60,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resources.qrc">:/star-off.svg</pixmap>
+        <pixmap resource="../widget_resources.qrc">:/star-off.svg</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -80,7 +80,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resources.qrc">:/star-off.svg</pixmap>
+        <pixmap resource="../widget_resources.qrc">:/star-off.svg</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -145,7 +145,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resources.qrc">:/star-off.svg</pixmap>
+        <pixmap resource="../widget_resources.qrc">:/star-off.svg</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -165,7 +165,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resources.qrc">:/star-off.svg</pixmap>
+        <pixmap resource="../widget_resources.qrc">:/star-off.svg</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -199,7 +199,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resources.qrc">:/star-off.svg</pixmap>
+        <pixmap resource="../widget_resources.qrc">:/star-off.svg</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -219,7 +219,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resources.qrc">:/star-off.svg</pixmap>
+        <pixmap resource="../widget_resources.qrc">:/star-off.svg</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -239,7 +239,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resources.qrc">:/star-off.svg</pixmap>
+        <pixmap resource="../widget_resources.qrc">:/star-off.svg</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -259,7 +259,7 @@
         <string/>
        </property>
        <property name="pixmap">
-        <pixmap resource="../../resources.qrc">:/star-off.svg</pixmap>
+        <pixmap resource="../widget_resources.qrc">:/star-off.svg</pixmap>
        </property>
        <property name="alignment">
         <set>Qt::AlignCenter</set>
@@ -284,10 +284,7 @@
   </layout>
  </widget>
  <resources>
-  <include location="../../resources.qrc"/>
-  <include location="../../resources.qrc"/>
-  <include location="../../resources.qrc"/>
-  <include location="../../resources.qrc"/>
+  <include location="../widget_resources.qrc"/>
  </resources>
  <connections/>
 </ui>
