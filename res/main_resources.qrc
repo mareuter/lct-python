@@ -1,14 +1,8 @@
 <RCC>
   <qresource prefix="/"/>
   <qresource>
-    <file alias="fq_moon.png">images/fq_moon.png</file>
-    <file alias="full_moon.png">images/full_moon.png</file>
-    <file alias="new_moon.png">images/new_moon.png</file>
-    <file alias="tq_moon.png">images/tq_moon.png</file>
     <file alias="moon.svg">images/moon_large.svg</file>
     <file alias="exit.svg">images/exit.svg</file>
     <file alias="location.svg">images/location.svg</file>
-    <file alias="star-off.svg">images/star-off.svg</file>
-    <file alias="star-on.svg">images/star-on.svg</file>
   </qresource>
 </RCC>
