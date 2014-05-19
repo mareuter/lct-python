@@ -9,7 +9,7 @@ from .ui_lunar_club_special_widget import Ui_LunarClubSpecialWidget
 from lct.utils.observing_info import ObservingInfo
 from lct.utils.string_format import StrFmt
 import lct.utils.constants as constants
-from .. import resources_rc
+from . import widget_resources_rc
 
 class LunarClubSpecialWidget(QtGui.QWidget, Ui_LunarClubSpecialWidget):
     '''
