@@ -81,12 +81,14 @@ class build_qt(Command):
 
     def run(self):
         # Make resources
-        qtr = "res/resources.qrc"
-        pyqtr = "%s/ui/resources_rc.py" % PACKAGE
-        if isNewer(qtr, pyqtr):
-            pyrcc_cmd = "pyrcc4 -o %s %s" % (pyqtr, qtr)
-            print pyrcc_cmd
-            exec_cmd(pyrcc_cmd)
+        qtr = ["res/main_resources.qrc", "res/widget_resources.qrc"]
+        pyqtr = ["lct/ui/main_resources_rc.py", "lct/ui/widgets/widget_resources_rc.py"]
+        import itertools
+        for rc, pyrc in itertools.izip(qtr, pyqtr):
+            if isNewer(rc, pyrc):
+                pyrcc_cmd = "pyrcc4 -o %s %s" % (pyrc, rc)
+                print pyrcc_cmd
+                exec_cmd(pyrcc_cmd)
             
         # Make dialogs
         udirs = ('ui', os.path.join('ui','widgets'))
