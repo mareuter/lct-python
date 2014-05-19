@@ -104,7 +104,7 @@
      <item>
       <widget class="QLabel" name="time_to_new_moon_label">
        <property name="text">
-        <string>Time to New Moon</string>
+        <string>Time to New Moon:</string>
        </property>
       </widget>
      </item>
@@ -284,6 +284,7 @@
   </layout>
  </widget>
  <resources>
+  <include location="../../resources.qrc"/>
   <include location="../../resources.qrc"/>
   <include location="../../resources.qrc"/>
   <include location="../../resources.qrc"/>
