@@ -8,5 +8,7 @@
     <file alias="moon.svg">images/moon_large.svg</file>
     <file alias="exit.svg">images/exit.svg</file>
     <file alias="location.svg">images/location.svg</file>
+    <file alias="star-off.svg">images/star-off.svg</file>
+    <file alias="star-on.svg">images/star-on.svg</file>
   </qresource>
 </RCC>
