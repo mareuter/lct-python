@@ -3,10 +3,13 @@ Created on Jun 1, 2012
 
 @author: Michael Reuter
 '''
+import math
+
 from PyQt4 import QtGui
 
 from .ui_moon_info_tab import Ui_MoonInfoTabWidget
 from lct.utils.observing_info import ObservingInfo
+from lct.utils.converter import Converter
 from lct.utils.string_format import StrFmt
 import lct.utils.constants as constants
 from . import widget_resources_rc
@@ -52,11 +55,20 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         self.utc_date_edit.setText(obsinfo.obs_site.getUtcDate())
         
         self.moon_phase_edit.setText(obsinfo.moon_info.getPhaseAsString())
-        self.moon_illum_edit.setText(obsinfo.moon_info.illumination(True))
-        self.moon_colong_edit.setText(StrFmt.dmsString(obsinfo.moon_info.colong().split(':')))
-        self.moon_age_edit.setText(obsinfo.moon_info.age())
-        self.moon_libration_lat_edit.setText(obsinfo.moon_info.libration('lat'))
-        self.moon_libration_long_edit.setText(obsinfo.moon_info.libration('long'))
+        
+        illum = 100.0 * obsinfo.moon_info.illumination()
+        self.moon_illum_edit.setText(StrFmt.floatString(illum, 1, "%"))
+        
+        colong = self._make_dm_string(obsinfo.moon_info.colong())
+        self.moon_colong_edit.setText(colong)
+        
+        self.moon_age_edit.setText(StrFmt.floatString(obsinfo.moon_info.age(), 2))
+        
+        lat_libration = self._make_dm_string(obsinfo.moon_info.libration('lat'))
+        self.moon_libration_lat_edit.setText(lat_libration)
+        
+        lon_libration = self._make_dm_string(obsinfo.moon_info.libration('long'))
+        self.moon_libration_long_edit.setText(lon_libration)
         
         self._set_moon_phase_widgets(obsinfo,
                                      (self.first_phase_icon, self.first_phase_edit),
@@ -65,6 +77,17 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
                                      (self.fourth_phase_icon, self.fourth_phase_edit))
         
         self.location_edit.setText(obsinfo.obs_site.getLocationString())
+        
+    def _make_dm_string(self, value):
+        '''
+        This function takes a radians angle values and converts it into a DM string.
+        @param value: The angle value to make the string from.
+        @return: The DM string for the angle value.
+        '''
+        dms = Converter.ddToDms(math.degrees(value))
+        # Only take degrees and minutes.
+        dm = (dms[0], dms[1], dms[-1])
+        return StrFmt.dmsString(dm)
         
     def _set_css_labels(self, *args):
         '''

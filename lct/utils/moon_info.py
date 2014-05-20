@@ -7,9 +7,6 @@ import math
 
 import ephem
 
-from .converter import Converter
-from .string_format import StrFmt
-
 class MoonInfo(object):
     '''
     This class is responsible for handling all of the information and 
@@ -124,10 +121,6 @@ class MoonInfo(object):
         @return: The libration coordinate in radians
         '''
         return getattr(self._moon, 'libration_%s' % coord_type)
-        #dms = Converter.ddToDms(math.degrees(libration))
-        # Only take degrees and minutes.
-        #dm = (dms[0], dms[1], dms[-1])
-        #return StrFmt.dmsString(dm)
     
     def _getPhase(self):
         '''
