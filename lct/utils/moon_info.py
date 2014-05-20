@@ -7,9 +7,6 @@ import math
 
 import ephem
 
-from .converter import Converter
-from .string_format import StrFmt
-
 class MoonInfo(object):
     '''
     This class is responsible for handling all of the information and 
@@ -47,27 +44,21 @@ class MoonInfo(object):
         @return: The age of the Moon in days.
         '''
         prev_new = ephem.previous_new_moon(self._observer.date)
-        age = self._observer.date - prev_new
-        return StrFmt.floatString(age, 2)
+        return self._observer.date - prev_new
         
     def colong(self):
         '''
         This function returns the current selenographic colongitude.
-        @return: The selenographic colongitude in DMS.
+        @return: The selenographic colongitude in radians.
         '''
-        return str(self._moon.colong)
+        return self._moon.colong
     
-    def illumination(self, use_postfix=False):
+    def illumination(self):
         '''
         This function returns the illuminated fraction of the Moon.
-        @param use_postfix: If true, put a % after the number in the string.
-        @return: The fraction of the illuminated Moon (<=100.0).
+        @return: The fraction of the illuminated Moon (<=1.0).
         '''
-        if use_postfix:
-            pf = '%'
-        else:
-            pf = None
-        return StrFmt.floatString(self._moon.moon_phase * 100.0, 1, postfix=pf)
+        return self._moon.moon_phase
     
     def isVisible(self, lfeature):
         '''
@@ -125,16 +116,11 @@ class MoonInfo(object):
     def libration(self, coord_type):
         '''
         This function retrieves the current lunar libration for the given 
-        coordinate: [lat, long]. The value from the Moon object is in radians
-        and needs to be converted to degrees.
+        coordinate: [lat, long].
         @param coord_type: Either latitude or longitude.
-        @return: The libration coordinate as a string.
+        @return: The libration coordinate in radians
         '''
-        libration = getattr(self._moon, 'libration_%s' % coord_type)
-        dms = Converter.ddToDms(math.degrees(libration))
-        # Only take degrees and minutes.
-        dm = (dms[0], dms[1], dms[-1])
-        return StrFmt.dmsString(dm)
+        return getattr(self._moon, 'libration_%s' % coord_type)
     
     def _getPhase(self):
         '''
@@ -158,6 +144,13 @@ class MoonInfo(object):
             return MoonInfo.TQ
         if 180.0 < colong < 270.0:
             return MoonInfo.WANING_CRESENT
+    
+    def getPhase(self):
+        '''
+        This function gets the numeric code for the phase of the moon. 
+        @return: The moon phase as a numeric code.
+        '''
+        return self._getPhase()
     
     def getPhaseAsString(self):
         '''
