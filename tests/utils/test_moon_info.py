@@ -1,8 +1,13 @@
-'''
-Created on May 11, 2014
+# -*- coding: utf-8 -*-
+#------------------------------------------------------------------------------
+# Copyright (c) 2014, Michael Reuter
+# Distributed under the MIT License. See LICENSE.txt for more information.
+#------------------------------------------------------------------------------
 
-@author: Michael Reuter
 '''
+Tests for the MoonInfo class.
+'''
+
 import unittest
 
 import ephem

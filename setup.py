@@ -1,6 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
-# $Id$
+# -*- coding: utf-8 -*-
+#------------------------------------------------------------------------------
+# Copyright (c) 2012-2014, Michael Reuter
+# Distributed under the MIT License. See LICENSE.txt for more information.
+#------------------------------------------------------------------------------
 
 from distutils.core import setup
 from distutils.command.install_data import install_data
@@ -109,7 +113,7 @@ if __name__ == "__main__":
           description = 'Lunar Club Tools',
           author = 'Michael Reuter',
           author_email = 'mareuternh@gmail.com',
-          license = 'MIT Academic',
+          license = 'MIT',
           cmdclass = {'install_data': smart_install_data,
                       'build_qt': build_qt},
           data_files = [ ('lct/ui', glob.glob('res/ui/*.ui')),

@@ -1,8 +1,13 @@
-'''
-Created on Apr 23, 2014
+# -*- coding: utf-8 -*-
+#------------------------------------------------------------------------------
+# Copyright (c) 2014, Michael Reuter
+# Distributed under the MIT License. See LICENSE.txt for more information.
+#------------------------------------------------------------------------------
 
-@author: Michael Reuter
 '''
+Tests for the Converter class static methods.
+'''
+
 import unittest
 
 from lct.utils.converter import Converter
