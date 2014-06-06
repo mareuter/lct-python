@@ -106,6 +106,18 @@ new_cmds = [('build_qt', None)]
 new_cmds.extend([x for x in old_cmds])
 distutils.command.build.build.sub_commands = new_cmds
 
+CLASSIFIERS = \
+"""
+Programming Language :: Python
+Programming Language :: Python :: 2
+License :: OSI Approved :: MIT License
+Operating System :: OS Independent
+Development Status :: 3 - Alpha
+Intended Audience :: Science/Research
+Intended Audience :: End Users/Desktop
+Topic :: Scientific/Engineering :: Astronomy
+"""
+
 if __name__ == "__main__":
     write_version()
     setup(name = PACKAGE,
@@ -113,7 +125,9 @@ if __name__ == "__main__":
           description = 'Lunar Club Tools',
           author = 'Michael Reuter',
           author_email = 'mareuternh@gmail.com',
+          url = 'https://github.com/mareuter/lct-python',
           license = 'MIT',
+          classifiers = CLASSIFIERS,
           cmdclass = {'install_data': smart_install_data,
                       'build_qt': build_qt},
           data_files = [ ('lct/ui', glob.glob('res/ui/*.ui')),
