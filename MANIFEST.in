@@ -1,5 +1,6 @@
 include LICENSE.txt README.md
-include lunar_club_tools.py run_tests.py
+include run_tests.py
+include scripts/lunar_club_tools
 recursive-include lct *
 recursive-include res *
 recursive-include tests *

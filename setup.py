@@ -141,5 +141,5 @@ if __name__ == "__main__":
           packages = ['lct',
                       'lct.features',
                       'lct.ui',
-                      'lct.utils'])
-          #scripts = ['bin/planet_weight_calc.py'])
+                      'lct.utils'],
+          scripts = ['scripts/lunar_club_tools'])
