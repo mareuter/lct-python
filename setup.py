@@ -128,6 +128,7 @@ if __name__ == "__main__":
           url = 'https://github.com/mareuter/lct-python',
           license = 'MIT',
           classifiers = CLASSIFIERS,
+          long_description = open("README.rst").read(),
           cmdclass = {'install_data': smart_install_data,
                       'build_qt': build_qt},
           data_files = [ ('lct/ui', glob.glob('res/ui/*.ui')),
