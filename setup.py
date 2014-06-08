@@ -135,12 +135,15 @@ if __name__ == "__main__":
                         ('lct/ui/widgets', glob.glob('res/ui/widgets/*.ui')),
                         ('lct/db', glob.glob('lct/db/*.db')),
                         ('lct/images', glob.glob('res/images/*.svg')) ],
+          #package_data = {'lct': ['db/*.db']},
           package_dir = {'lct': 'lct',
                          'lct.ui': 'lct/ui',
+                         'lct.ui.widgets': 'lct/ui/widgets',
                          'lct.features': 'lct/features',
                          'lct.utils': 'lct/utils'},
           packages = ['lct',
                       'lct.features',
                       'lct.ui',
+                      'lct.ui.widgets',
                       'lct.utils'],
-          scripts = ['scripts/lunar_club_tools'])
+          scripts = ['scripts/lunar_club_tools.py'])

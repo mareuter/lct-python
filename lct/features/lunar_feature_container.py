@@ -19,10 +19,13 @@ class LunarFeatureContainer(object):
     '''
     DEBUG = False
 
-    def __init__(self, dbname="lct/db/moon.db"):
+    def __init__(self):
         '''
         Constructor
         '''
+        import pkg_resources
+        rsman = pkg_resources.ResourceManager()
+        dbname = rsman.resource_filename('lct', 'db/moon.db')
         self.conn = sqlite3.connect(dbname)
         self.features = {}
         self.club_type = set()
