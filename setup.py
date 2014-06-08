@@ -135,7 +135,6 @@ if __name__ == "__main__":
                         ('lct/ui/widgets', glob.glob('res/ui/widgets/*.ui')),
                         ('lct/db', glob.glob('lct/db/*.db')),
                         ('lct/images', glob.glob('res/images/*.svg')) ],
-          #package_data = {'lct': ['db/*.db']},
           package_dir = {'lct': 'lct',
                          'lct.ui': 'lct/ui',
                          'lct.ui.widgets': 'lct/ui/widgets',
