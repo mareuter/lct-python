@@ -1,8 +1,9 @@
-'''
-Created on Jun 11, 2012
+# -*- coding: utf-8 -*-
+#------------------------------------------------------------------------------
+# Copyright (c) 2012-2014, Michael Reuter
+# Distributed under the MIT License. See LICENSE.txt for more information.
+#------------------------------------------------------------------------------
 
-@author: Michael Reuter
-'''
 import sqlite3
 from PyQt4 import QtCore
 
