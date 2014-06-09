@@ -1,7 +1,9 @@
-'''
-Created on Jun 1, 2012
-@author: Michael Reuter
-'''
+# -*- coding: utf-8 -*-
+#------------------------------------------------------------------------------
+# Copyright (c) 2012-2014, Michael Reuter
+# Distributed under the MIT License. See LICENSE.txt for more information.
+#------------------------------------------------------------------------------
+
 from PyQt4 import QtCore
 from PyQt4 import QtGui
 

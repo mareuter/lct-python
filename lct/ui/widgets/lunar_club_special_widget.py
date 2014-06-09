@@ -1,8 +1,9 @@
-'''
-Created on May 18, 2014
+# -*- coding: utf-8 -*-
+#------------------------------------------------------------------------------
+# Copyright (c) 2014, Michael Reuter
+# Distributed under the MIT License. See LICENSE.txt for more information.
+#------------------------------------------------------------------------------
 
-@author: Michael Reuter
-'''
 from PyQt4 import QtGui
 
 from .ui_lunar_club_special_widget import Ui_LunarClubSpecialWidget

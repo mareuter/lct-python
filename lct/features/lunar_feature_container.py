@@ -1,8 +1,9 @@
-'''
-Created on Jun 11, 2012
+# -*- coding: utf-8 -*-
+#------------------------------------------------------------------------------
+# Copyright (c) 2012-2014, Michael Reuter
+# Distributed under the MIT License. See LICENSE.txt for more information.
+#------------------------------------------------------------------------------
 
-@author: Michael Reuter
-'''
 import sqlite3
 from PyQt4 import QtCore
 
@@ -19,10 +20,13 @@ class LunarFeatureContainer(object):
     '''
     DEBUG = False
 
-    def __init__(self, dbname="lct/db/moon.db"):
+    def __init__(self):
         '''
         Constructor
         '''
+        import pkg_resources
+        rsman = pkg_resources.ResourceManager()
+        dbname = rsman.resource_filename('lct', 'db/moon.db')
         self.conn = sqlite3.connect(dbname)
         self.features = {}
         self.club_type = set()

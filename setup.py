@@ -1,6 +1,10 @@
-#!/usr/bin/env python
+#!/usr/bin/env python2
 
-# $Id$
+# -*- coding: utf-8 -*-
+#------------------------------------------------------------------------------
+# Copyright (c) 2012-2014, Michael Reuter
+# Distributed under the MIT License. See LICENSE.txt for more information.
+#------------------------------------------------------------------------------
 
 from distutils.core import setup
 from distutils.command.install_data import install_data
@@ -102,6 +106,18 @@ new_cmds = [('build_qt', None)]
 new_cmds.extend([x for x in old_cmds])
 distutils.command.build.build.sub_commands = new_cmds
 
+CLASSIFIERS = \
+"""
+Programming Language :: Python
+Programming Language :: Python :: 2
+License :: OSI Approved :: MIT License
+Operating System :: OS Independent
+Development Status :: 3 - Alpha
+Intended Audience :: Science/Research
+Intended Audience :: End Users/Desktop
+Topic :: Scientific/Engineering :: Astronomy
+"""
+
 if __name__ == "__main__":
     write_version()
     setup(name = PACKAGE,
@@ -109,7 +125,10 @@ if __name__ == "__main__":
           description = 'Lunar Club Tools',
           author = 'Michael Reuter',
           author_email = 'mareuternh@gmail.com',
-          license = 'MIT Academic',
+          url = 'https://github.com/mareuter/lct-python',
+          license = 'MIT',
+          classifiers = CLASSIFIERS,
+          long_description = open("README.rst").read(),
           cmdclass = {'install_data': smart_install_data,
                       'build_qt': build_qt},
           data_files = [ ('lct/ui', glob.glob('res/ui/*.ui')),
@@ -118,10 +137,12 @@ if __name__ == "__main__":
                         ('lct/images', glob.glob('res/images/*.svg')) ],
           package_dir = {'lct': 'lct',
                          'lct.ui': 'lct/ui',
+                         'lct.ui.widgets': 'lct/ui/widgets',
                          'lct.features': 'lct/features',
                          'lct.utils': 'lct/utils'},
           packages = ['lct',
                       'lct.features',
                       'lct.ui',
-                      'lct.utils'])
-          #scripts = ['bin/planet_weight_calc.py'])
+                      'lct.ui.widgets',
+                      'lct.utils'],
+          scripts = ['scripts/lunar_club_tools.py'])

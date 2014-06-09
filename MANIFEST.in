@@ -1,0 +1,9 @@
+include LICENSE.txt README.rst
+include run_tests.py
+include scripts/lunar_club_tools.py
+recursive-include lct *
+recursive-include res *
+recursive-include tests *
+
+global-exclude *.pyc ui_*.py *_rc.py
+global-exclude .gitignore
