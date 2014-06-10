@@ -78,14 +78,14 @@ class MoonInfo(object):
         @return: True if the feature is visible.
         '''
         selco_longitude = self._colongToLong()
-        self.logger.debug("Longitude from colongitude: %d", selco_longitude)
+        self.logger.debug("Longitude from colongitude: %.2lf", selco_longitude)
         cur_tod = self._getTimeOfDay()
         
         min_long = lfeature.longitude - lfeature.delta_longitude / 2.0
         max_long = lfeature.longitude + lfeature.delta_longitude / 2.0
-        
+
         self.logger.debug("Feature: %s", lfeature)
-        self.logger.debug("Min,Max Longitude: %d, %d", min_long, max_long)
+        self.logger.debug("Min,Max Longitude: %.2lf, %.2lf", min_long, max_long)
         
         if min_long > max_long:
             temp = min_long
@@ -99,7 +99,7 @@ class MoonInfo(object):
         if cur_tod == MoonInfo.MORNING:
             # Minimum longitude for morning visibility
             long_cutoff = min_long - cutoff
-            self.logger.debug("Min Longitude and Longitude cutoff: %d, %d", min_long, long_cutoff)
+            self.logger.debug("Min Longitude and Longitude cutoff: %.2lf, %.2lf", min_long, long_cutoff)
             if lfeature.feature_type in MoonInfo.NO_CUTOFF_TYPE:
                 is_visible = selco_longitude <= min_long
             else:
@@ -107,7 +107,7 @@ class MoonInfo(object):
         if cur_tod == MoonInfo.EVENING:
             # Maximum longitude for evening visibility
             long_cutoff = max_long + cutoff
-            self.logger.debug("Max Longitude and Longitude cutoff: %d, %d", max_long, long_cutoff)
+            self.logger.debug("Max Longitude and Longitude cutoff: %.2lf, %.2lf", max_long, long_cutoff)
             if lfeature.feature_type in MoonInfo.NO_CUTOFF_TYPE:
                 is_visible = max_long <= selco_longitude
             else:
