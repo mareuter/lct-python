@@ -4,11 +4,7 @@
 # Distributed under the MIT License. See LICENSE.txt for more information.
 #------------------------------------------------------------------------------
 
-'''
-Created on Jun 13, 2012
-
-@author: Michael Reuter
-'''
+import logging
 import math
 
 import ephem
@@ -34,6 +30,7 @@ class MoonInfo(object):
         Constructor
         '''
         self._moon = ephem.Moon()
+        self.logger = logging.getLogger('lct.utils.moon_info.MoonInfo')
         
     def compute(self, observer):
         '''
@@ -81,14 +78,14 @@ class MoonInfo(object):
         @return: True if the feature is visible.
         '''
         selco_longitude = self._colongToLong()
-        print "Q:", selco_longitude
+        self.logger.debug("Longitude from colongitude: %d", selco_longitude)
         cur_tod = self._getTimeOfDay()
         
         min_long = lfeature.longitude - lfeature.delta_longitude / 2.0
         max_long = lfeature.longitude + lfeature.delta_longitude / 2.0
         
-        print "A:", lfeature
-        print "B:", min_long, max_long
+        self.logger.debug("Feature: %s", lfeature)
+        self.logger.debug("Min,Max Longitude: %d, %d", min_long, max_long)
         
         if min_long > max_long:
             temp = min_long
@@ -102,7 +99,7 @@ class MoonInfo(object):
         if cur_tod == MoonInfo.MORNING:
             # Minimum longitude for morning visibility
             long_cutoff = min_long - cutoff
-            print "D:", min_long, long_cutoff
+            self.logger.debug("Min Longitude and Longitude cutoff: %d, %d", min_long, long_cutoff)
             if lfeature.feature_type in MoonInfo.NO_CUTOFF_TYPE:
                 is_visible = selco_longitude <= min_long
             else:
@@ -110,13 +107,13 @@ class MoonInfo(object):
         if cur_tod == MoonInfo.EVENING:
             # Maximum longitude for evening visibility
             long_cutoff = max_long + cutoff
-            print "DD:", max_long, long_cutoff
+            self.logger.debug("Max Longitude and Longitude cutoff: %d, %d", max_long, long_cutoff)
             if lfeature.feature_type in MoonInfo.NO_CUTOFF_TYPE:
                 is_visible = max_long <= selco_longitude
             else:
                 is_visible = max_long <= selco_longitude <= long_cutoff
             
-        print "C:", is_visible
+        self.logger.debug("Is Visible: %s", is_visible)
         return is_visible
     
     def libration(self, coord_type):
