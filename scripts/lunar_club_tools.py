@@ -10,7 +10,7 @@ if __name__ == '__main__':
     
     _VERBOSITY_LOGLEVEL_DICT = {0: logging.ERROR, 1: logging.WARNING,
                                 2: logging.INFO, 3: logging.DEBUG}
-    _FILE_LOG_FORMAT = '%(asctime)s - %(name)s - %(levelname)s - %(message)s'
+    _FILE_LOG_FORMAT = '%(asctime)s - %(levelname)s - %(name)s - %(message)s'
     
     # Parse the command line optional arguments
     parser = argparse.ArgumentParser(usage='%(prog)s [option]... ')
