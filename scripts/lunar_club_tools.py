@@ -31,7 +31,14 @@ if __name__ == '__main__':
     if args.log_file is not None:
         import os
         log_filename = os.path.expandvars(os.path.expanduser(args.log_file))
-        file_handler = logging.FileHandler(log_filename)
+        try:
+            file_handler = logging.FileHandler(log_filename)
+        except IOError:
+            # Write access denied, try the home area.
+            direc = os.path.dirname(log_filename)
+            log_filename = log_filename.replace(direc, os.path.expanduser("~"))
+            print "Write access denied. Writing to", os.path.expanduser("~"), "instead!"
+            file_handler = logging.FileHandler(log_filename)
         file_handler.setFormatter(file_formatter)
         logger.addHandler(file_handler)
     else:
