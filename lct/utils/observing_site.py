@@ -120,7 +120,11 @@ class ObservingSite(object):
         @return: The local timezone.
         '''
         tz_name = time.tzname[time.daylight]
-        return "".join([x[0] for x in tz_name.split()])
+        values = tz_name.split()
+        if len(values) > 1:
+            return "".join([x[0] for x in values])
+        else:
+            return values[0]
     
     def getObserver(self):
         '''
