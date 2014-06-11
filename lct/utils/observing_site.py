@@ -23,8 +23,13 @@ class ObservingSite(object):
         '''
         Constructor
         '''
+        import logging
+        self.logger = logging.getLogger('lct.utils.observing_site.ObservingSite')
+
         curtime = time.time()
+        self.logger.info("Current Time: %s", curtime)
         obdatetime = ephem.Date(time.gmtime(curtime)[:-3])
+        self.logger.info("Ephem Date: %s", obdatetime)
         self._observer = ephem.Observer()
         self._observer.date = obdatetime
         self._observer.lat = self.toCoordString("lat")
@@ -95,6 +100,8 @@ class ObservingSite(object):
         @return: The UTC date/time.
         '''
         seconds = int(round(self._observer.date.tuple()[-1], 0))
+        self.logger.info("UTC Time: %s", str(self._observer.date))
+        self.logger.info("UTC Time Tuple: %s", str(self._observer.date.tuple()))
         return time.strftime("%Y/%m/%d %H:%M:%S", 
                              tuple(int(x) for x in self._observer.date.tuple()[:-1]) + 
                              (seconds, 0, 0, 0))
@@ -105,6 +112,7 @@ class ObservingSite(object):
         @return: The local date/time.
         '''
         local_time = ephem.localtime(self._observer.date)
+        self.logger.info("Local Time: %s", local_time)
         return str(local_time.strftime("%Y-%m-%dT%H:%M:%S"))
     
     def getLocalDate(self):
