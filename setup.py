@@ -6,10 +6,17 @@
 # Distributed under the MIT License. See LICENSE.txt for more information.
 #------------------------------------------------------------------------------
 
-from distutils.core import setup
+try:
+    from setuptools import setup
+    have_setuptools = True
+except ImportError:
+    from distutils.core import setup
+    have_setuptools = False
+    
 from distutils.command.install_data import install_data
 import distutils.command.build
 from distutils.cmd import Command
+
 import glob
 import os
 import stat
@@ -118,6 +125,14 @@ Intended Audience :: End Users/Desktop
 Topic :: Scientific/Engineering :: Astronomy
 """
 
+install_requires = []
+if have_setuptools:
+    import sys
+    if sys.platform != "win32":
+        install_requires.append("ephem")
+    install_requires.append("qdarkstyle")
+    install_requires.append("tzlocal")
+
 if __name__ == "__main__":
     write_version()
     setup(name = PACKAGE,
@@ -145,4 +160,5 @@ if __name__ == "__main__":
                       'lct.ui',
                       'lct.ui.widgets',
                       'lct.utils'],
-          scripts = ['scripts/lunar_club_tools.py'])
+          scripts = ['scripts/lunar_club_tools.py'],
+          install_requires=install_requires)
