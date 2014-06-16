@@ -41,18 +41,21 @@ The correct version of `Python`_ should already be install on your system. If no
 via the appropriate package manager. You will then need to install `PyQt`_ libraries and build tools 
 packages. The names vary between OS flavors. Next, follow the installation instructions for `pip`_ 
 appropriate to Linux. Once that is complete, run the following::
-    pip install lct
+ 
+ pip install lct
 
 OSX
 ^^^
 
 The correct version of `Python`_ should already be install on your system. To get `PyQt`_, the best 
 way is via `homebrew`_::
-    brew install pyqt
+ 
+ brew install pyqt
 
 Then, follow the installation instructions for `pip`_ appropriate to OSX. Once that is complete, 
 run the following::
-    pip install lct
+ 
+ pip install lct
 
 Windows
 ^^^^^^^
@@ -61,9 +64,11 @@ Download the correct version from `Python`_. Be sure you note if you install the
 version of Python. Download the correct associated version of `PyQt`_ from their site and install. 
 Next, download the correct associated version of `pyephem`_ and install. Then, follow the installation 
 instructions for `pip`_ appropriate to Windows. Once that is complete, run the following::
-    pip install lct
+
+ pip install lct
 
 Alternatively, you can download the associated version of the Lunar Club Tools here. However, you 
 will need to install two other packages via `pip`_::
-    pip install tzlocal
-    pip install qdarkstyle
+
+ pip install tzlocal
+ pip install qdarkstyle

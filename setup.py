@@ -113,17 +113,15 @@ new_cmds = [('build_qt', None)]
 new_cmds.extend([x for x in old_cmds])
 distutils.command.build.build.sub_commands = new_cmds
 
-CLASSIFIERS = \
-"""
-Programming Language :: Python
-Programming Language :: Python :: 2
-License :: OSI Approved :: MIT License
-Operating System :: OS Independent
-Development Status :: 3 - Alpha
-Intended Audience :: Science/Research
-Intended Audience :: End Users/Desktop
-Topic :: Scientific/Engineering :: Astronomy
-"""
+CLASSIFIERS = [
+"Programming Language :: Python",
+"Programming Language :: Python :: 2",
+"License :: OSI Approved :: MIT License",
+"Operating System :: OS Independent",
+"Development Status :: 3 - Alpha",
+"Intended Audience :: Science/Research",
+"Intended Audience :: End Users/Desktop",
+"Topic :: Scientific/Engineering :: Astronomy"]
 
 install_requires = []
 if have_setuptools:
