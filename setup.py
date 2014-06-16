@@ -24,7 +24,7 @@ import stat
 PACKAGE = 'lct'
 MAJOR = 0
 MINOR = 4
-PATCH = "dev"
+PATCH = 0
 try:
     VERSION = "%d.%d.%d" % (MAJOR, MINOR, PATCH)
 except TypeError:
