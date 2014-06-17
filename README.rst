@@ -30,9 +30,9 @@ Requirements
 
 - Python 2.7
 - PyQt >= 4.8 (not 5)
-- pyephem >= 3.7.5.3
+- pyephem >= 3.7.4.1
 - tzlocal >= 1.1.1
-- QDarkStyle >= 1.11
+- QDarkStyle >= 1.9
 
 Linux
 ^^^^^
