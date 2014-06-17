@@ -125,9 +125,7 @@ CLASSIFIERS = [
 
 install_requires = []
 if have_setuptools:
-    import sys
-    if sys.platform != "win32":
-        install_requires.append("ephem")
+    install_requires.append("pyephem")
     install_requires.append("qdarkstyle")
     install_requires.append("tzlocal")
 
