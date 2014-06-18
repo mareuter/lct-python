@@ -4,3 +4,5 @@
 /build
 /dist
 /MANIFEST
+/lct.egg-info
+/lct-0.4.dev

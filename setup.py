@@ -6,10 +6,17 @@
 # Distributed under the MIT License. See LICENSE.txt for more information.
 #------------------------------------------------------------------------------
 
-from distutils.core import setup
+try:
+    from setuptools import setup
+    have_setuptools = True
+except ImportError:
+    from distutils.core import setup
+    have_setuptools = False
+    
 from distutils.command.install_data import install_data
 import distutils.command.build
 from distutils.cmd import Command
+
 import glob
 import os
 import stat
@@ -17,7 +24,7 @@ import stat
 PACKAGE = 'lct'
 MAJOR = 0
 MINOR = 4
-PATCH = "dev"
+PATCH = 0
 try:
     VERSION = "%d.%d.%d" % (MAJOR, MINOR, PATCH)
 except TypeError:
@@ -106,17 +113,21 @@ new_cmds = [('build_qt', None)]
 new_cmds.extend([x for x in old_cmds])
 distutils.command.build.build.sub_commands = new_cmds
 
-CLASSIFIERS = \
-"""
-Programming Language :: Python
-Programming Language :: Python :: 2
-License :: OSI Approved :: MIT License
-Operating System :: OS Independent
-Development Status :: 3 - Alpha
-Intended Audience :: Science/Research
-Intended Audience :: End Users/Desktop
-Topic :: Scientific/Engineering :: Astronomy
-"""
+CLASSIFIERS = [
+"Programming Language :: Python",
+"Programming Language :: Python :: 2",
+"License :: OSI Approved :: MIT License",
+"Operating System :: OS Independent",
+"Development Status :: 3 - Alpha",
+"Intended Audience :: Science/Research",
+"Intended Audience :: End Users/Desktop",
+"Topic :: Scientific/Engineering :: Astronomy"]
+
+install_requires = []
+if have_setuptools:
+    install_requires.append("pyephem")
+    install_requires.append("qdarkstyle")
+    install_requires.append("tzlocal")
 
 if __name__ == "__main__":
     write_version()
@@ -128,7 +139,8 @@ if __name__ == "__main__":
           url = 'https://github.com/mareuter/lct-python',
           license = 'MIT',
           classifiers = CLASSIFIERS,
-          long_description = open("README.rst").read(),
+          long_description = os.linesep+open("README.rst").read(),
+          platforms="Linux,OSX,Windows",
           cmdclass = {'install_data': smart_install_data,
                       'build_qt': build_qt},
           data_files = [ ('lct/ui', glob.glob('res/ui/*.ui')),
@@ -145,4 +157,5 @@ if __name__ == "__main__":
                       'lct.ui',
                       'lct.ui.widgets',
                       'lct.utils'],
-          scripts = ['scripts/lunar_club_tools.py'])
+          scripts = ['scripts/lunar_club_tools.py'],
+          install_requires=install_requires)
