@@ -72,3 +72,12 @@ will need to install two other packages via `pip`_::
 
  pip install tzlocal
  pip install qdarkstyle
+
+Running
+-------
+
+As long as the installation directory for `Python`_ scripts is in your PATH, the program is run via 
+the following::
+
+ lunar_club_tools.py
+ 
