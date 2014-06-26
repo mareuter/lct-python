@@ -24,12 +24,12 @@ class ConverterTest(unittest.TestCase):
         # This should round to 57, set to 56 to make test pass
         self.assertEqual(Converter.ddToDms(3.1657), (3, 9, 56, 1))
         # This should be (almost) exact
-        # assertAlmostEquals can't handle tuples, so zip it!
+        # assertAlmostEqual can't handle tuples, so zip it!
         answer = (3, 9, 56.52, 1)
         calc = Converter.ddToDms(3.1657, True)
         import itertools
         for a, b in itertools.izip(calc, answer):
-            self.assertAlmostEquals(a, b)
+            self.assertAlmostEqual(a, b)
 
     def test_dmstoDd(self):
         # Inverse of the tests in test_ddToDms
