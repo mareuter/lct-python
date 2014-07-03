@@ -4,11 +4,6 @@
 # Distributed under the MIT License. See LICENSE.txt for more information.
 #------------------------------------------------------------------------------
 
-'''
-Created on Jun 1, 2012
-
-@author: Michael Reuter
-'''
 import math
 
 from PyQt4 import QtGui
