@@ -20,25 +20,16 @@ class ObservingSite(object):
     _longitude = (-84, 19, 0)
     _observer = None
 
-    def __init__(self, datetimestr=None):
+    def __init__(self):
         '''
         Constructor
-        
-        @param datetimestr: A string containing a date/time representation.
         '''
         import logging
         self.logger = logging.getLogger('lct.utils.observing_site.ObservingSite')
 
-        if datetimestr is not None:
-            dt = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
-            curtime = time.mktime(dt.timetuple())
-        else:
-            curtime = time.time()
-        self.logger.info("Current Time: %s", curtime)
-        obdatetime = ephem.Date(time.gmtime(curtime)[:-3])
-        self.logger.info("Ephem Date: %s", obdatetime)
+        # Observer defaults to current time.
         self._observer = ephem.Observer()
-        self._observer.date = obdatetime
+        self.logger.info("Ephem Date: %s", self._observer.date)
         self._observer.lat = self.toCoordString("lat")
         self._observer.long = self.toCoordString("long")
     
@@ -158,6 +149,17 @@ class ObservingSite(object):
         result.append(self._tupleToDmsString("lat"))
         result.append(self._tupleToDmsString("long"))
         return "  ".join(result)
+    
+    def setDateTime(self, datetimestr):
+        '''
+        This function sets the observer date/time to the requested string.
+        @param datetimestr: A string containing a date/time representation.
+        '''
+        if datetimestr is not None:
+            dt = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+            curtime = time.mktime(dt.timetuple())
+            self.logger.info("Override Time: %s", curtime)
+            self._observer.date = ephem.Date(time.gmtime(curtime)[:-3])
     
     def setLocationName(self, name):
         '''

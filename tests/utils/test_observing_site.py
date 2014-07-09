@@ -24,7 +24,8 @@ class ObservingSiteTest(unittest.TestCase):
         self.assertIsNotNone(obs_site.getDateTime())
         
     def test_timeStringConstruction(self):
-        obs_site = ObservingSite(" ".join([self.datestr, self.timestr]))
+        obs_site = ObservingSite()
+        obs_site.setDateTime(" ".join([self.datestr, self.timestr]))
         datetimestr = "T".join([self.datestr, self.timestr]).replace('/', '-')
         self.assertEquals(obs_site.getDateTime(), datetimestr)
 
