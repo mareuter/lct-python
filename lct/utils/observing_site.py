@@ -4,6 +4,7 @@
 # Distributed under the MIT License. See LICENSE.txt for more information.
 #------------------------------------------------------------------------------
 
+import datetime
 import os
 import time
 
@@ -19,14 +20,20 @@ class ObservingSite(object):
     _longitude = (-84, 19, 0)
     _observer = None
 
-    def __init__(self):
+    def __init__(self, datetimestr=None):
         '''
         Constructor
+        
+        @param datetimestr: A string containing a date/time representation.
         '''
         import logging
         self.logger = logging.getLogger('lct.utils.observing_site.ObservingSite')
 
-        curtime = time.time()
+        if datetimestr is not None:
+            dt = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+            curtime = time.mktime(dt.timetuple())
+        else:
+            curtime = time.time()
         self.logger.info("Current Time: %s", curtime)
         obdatetime = ephem.Date(time.gmtime(curtime)[:-3])
         self.logger.info("Ephem Date: %s", obdatetime)
