@@ -48,7 +48,6 @@ class MoonInfoTab(QtGui.QWidget, Ui_MoonInfoTabWidget):
         current Moon information from the current observation time.
         '''
         obsinfo = ObservingInfo()
-        obsinfo.update()
 
         tz_fmt = " (" + obsinfo.obs_site.getLocalTimezone() + "):"
         self.local_date_label.setText(self.local_date_label.text() + tz_fmt)

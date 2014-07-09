@@ -52,7 +52,6 @@ class LunarClubSpecialWidget(QtGui.QWidget, Ui_LunarClubSpecialWidget):
         This function is for handling things that need to be updated on the UI.
         '''
         obsinfo = ObservingInfo()
-        obsinfo.update()
         
         # Time from new moon calculations
         hrs_from_new = obsinfo.moon_info.timeFromNewMoon()

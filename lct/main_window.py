@@ -9,6 +9,7 @@ from PyQt4 import QtGui
 
 import lct.ui.ui_mainwindow as um
 import lct.ui.widgets as uw
+import lct.utils.observing_info as oi
 from . import version
 
 class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
@@ -31,6 +32,7 @@ class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
         self.connect(self.actionLunarClubTools, QtCore.SIGNAL("triggered()"),
                      self.about)
         
+        self.updateTime()
         self.updateUI()
         
     def updateUI(self):
@@ -40,6 +42,14 @@ class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
         self.moonInfoTab.updateUI()
         self.lunarClubTab.updateUI()
         self.lunarTwoTab.updateUI()
+        
+    def updateTime(self):
+        '''
+        This function updates the time in the ObservingInfo object and calls its update 
+        function.
+        '''
+        obsinfo = oi.ObservingInfo()
+        obsinfo.update()
         
     def closeEvent(self, event):
         '''
