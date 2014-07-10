@@ -56,5 +56,18 @@ if __name__ == '__main__':
         logger.setLevel(logging.ERROR)
         logger.error('Invalid verbosity level: {}'.format(args.verbose))
     
+
+    import sys
+    import qdarkstyle
+    
+    from PyQt4 import QtGui
+    app = QtGui.QApplication(sys.argv)
+    app.setStyleSheet(qdarkstyle.load_stylesheet(pyside=False))
+    app.setOrganizationName("Type II Software")
+    app.setApplicationName("Lunar Club Tools")
+    
     import lct.main_window as lm
-    lm.main(args.localtime)
+    form = lm.LunarClubTools(datetimestr=args.localtime)
+    form.show()
+    
+    app.exec_()

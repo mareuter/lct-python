@@ -95,20 +95,4 @@ class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
                                 <br><br>
                                 Copyleft 2012 Type II Software
                                 """ % version.version)
-           
-def main(dtstr):
-    '''
-    This is the entrance point for the program.
-    @param datetimestr: A string containing a date/time representation.
-    '''
-    import sys
-    import qdarkstyle
-    
-    app = QtGui.QApplication(sys.argv)
-    app.setStyleSheet(qdarkstyle.load_stylesheet(pyside=False))
-    app.setOrganizationName("Type II Software")
-    app.setApplicationName("Lunar Club Tools")
-    form = LunarClubTools(datetimestr=dtstr)
-    form.show()
-    app.exec_()
     
