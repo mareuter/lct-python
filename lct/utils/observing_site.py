@@ -157,9 +157,12 @@ class ObservingSite(object):
         '''
         if datetimestr is not None:
             dt = datetime.datetime.strptime(datetimestr, "%Y/%m/%d %H:%M:%S")
+            self.logger.info("Override Time Tuple: %s", str(dt.timetuple()))
             curtime = time.mktime(dt.timetuple())
             self.logger.info("Override Time: %s", curtime)
             self._observer.date = ephem.Date(time.gmtime(curtime)[:-3])
+        else:
+            self.logger.info("No override time provided.")
     
     def setLocationName(self, name):
         '''

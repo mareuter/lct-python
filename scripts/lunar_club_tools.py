@@ -16,6 +16,11 @@ if __name__ == '__main__':
     # Parse the command line optional arguments
     parser = argparse.ArgumentParser(usage='%(prog)s [option]... ')
     
+    program_settings = parser.add_argument_group('program_settings')
+    
+    program_settings.add_argument('-t', '--localtime', 
+                                  help='Give a local time. Format: YYYY/MM/DD HH:MM:SS')
+    
     logging_group = parser.add_argument_group('logging')
     # Logging options
     logging_group.add_argument('-l', '--log-file', help='Set the log file path.')
@@ -52,4 +57,4 @@ if __name__ == '__main__':
         logger.error('Invalid verbosity level: {}'.format(args.verbose))
     
     import lct.main_window as lm
-    lm.main()
+    lm.main(args.localtime)

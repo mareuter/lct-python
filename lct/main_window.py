@@ -17,12 +17,17 @@ class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
     This is the main class for the program.
     '''
     
-    def __init__(self, parent=None):
+    def __init__(self, datetimestr=None, parent=None):
         '''
         Constructor
+        @param datetimestr: A string containing a date/time representation.
         '''
         super(LunarClubTools, self).__init__(parent)
+        import logging
+        self.logger = logging.getLogger('lct.utils.main_window.LunarClubTools')
+        
         self.setupUi(self)
+        self.logger.debug("Main program UI setup.")
         self.tabWidget.setCurrentIndex(0)
         
         self.connect(self.actionExit, QtCore.SIGNAL("triggered()"),
@@ -32,23 +37,32 @@ class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
         self.connect(self.actionLunarClubTools, QtCore.SIGNAL("triggered()"),
                      self.about)
         
-        self.updateTime()
+        self.updateTime(datetimestr)
+        self.logger.debug("Date/time updated.")
         self.updateUI()
+        self.logger.debug("Widget UIs updated.")
         
     def updateUI(self):
         '''
         This function updates the main window UI and the sub-component UIs.
         '''
+        self.logger.debug("Starting LunarClubTools::updateUI.")
         self.moonInfoTab.updateUI()
+        self.logger.debug("MoonInfoTab UI updated.")
         self.lunarClubTab.updateUI()
+        self.logger.debug("LunarClubTab UI updated.")
         self.lunarTwoTab.updateUI()
+        self.logger.debug("LunarTwoTab UI updated.")
         
-    def updateTime(self):
+    def updateTime(self, datetimestr):
         '''
-        This function updates the time in the ObservingInfo object and calls its update 
-        function.
+        This function updates the time in the ObservingInfo object and calls its 
+        update function.
+        @param datetimestr: A string containing a date/time representation.
         '''
+        self.logger.debug("Starting LunarClubTools::updateTime.")
         obsinfo = oi.ObservingInfo()
+        obsinfo.obs_site.setDateTime(datetimestr)
         obsinfo.update()
         
     def closeEvent(self, event):
@@ -82,9 +96,10 @@ class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
                                 Copyleft 2012 Type II Software
                                 """ % version.version)
            
-def main():
+def main(dtstr):
     '''
     This is the entrance point for the program.
+    @param datetimestr: A string containing a date/time representation.
     '''
     import sys
     import qdarkstyle
@@ -93,7 +108,7 @@ def main():
     app.setStyleSheet(qdarkstyle.load_stylesheet(pyside=False))
     app.setOrganizationName("Type II Software")
     app.setApplicationName("Lunar Club Tools")
-    form = LunarClubTools()
+    form = LunarClubTools(datetimestr=dtstr)
     form.show()
     app.exec_()
     
