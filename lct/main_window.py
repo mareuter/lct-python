@@ -8,7 +8,6 @@ from PyQt4 import QtCore
 from PyQt4 import QtGui
 
 import lct.ui.ui_mainwindow as um
-import lct.ui.widgets as uw
 from . import version
 
 class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
@@ -53,7 +52,8 @@ class LunarClubTools(QtGui.QMainWindow, um.Ui_MainWindow):
         '''
         This function sets up and opens the location configuration dialog.
         '''
-        dialog = uw.location_config.LocationConfig()
+        import lct.ui.widgets.location_config as uwlc
+        dialog = uwlc.LocationConfig()
         self.connect(dialog, QtCore.SIGNAL("updateLocation"), self.updateUI)
         if dialog.exec_():
             dialog.setLocation()
